@@ -1,20 +1,59 @@
 import java.util.Scanner;
 
-public class Q3StudentException {
+class Student {
+
+    String name;
+    int rollno;
+    int[] marks;
+    double percent = 0;
+
+    Student(String n, int r, int[] m) {
+        name = n;
+        rollno = r;
+        marks = new int[m.length];
+        for (int i = 0; i < m.length; i++) {
+            marks[i] = m[i];
+            percent += m[i];
+        }
+        percent /= m.length;
+    }
+
+    double percentage() {
+        return percent;
+    }
+
+    char grade() {
+        if (percent >= 90)
+            return 'A';
+        if (percent >= 80)
+            return 'B';
+        if (percent >= 70)
+            return 'C';
+        if (percent >= 60)
+            return 'D';
+        if (percent >= 50)
+            return 'E';
+        else
+            return 'F';
+    }
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter student name: ");
+        String name = scan.nextLine();
         try {
-            System.out.println("Enter your name");
-            String name = sc.nextLine();
-            System.out.println("Enter Roll number:");
-            String input1 = sc.nextLine();
-            int RollNo = Integer.parseInt(input1);
-            System.out.println("Enter Marks:");
-            String input2 = sc.nextLine();
-            int marks = Integer.parseInt(input2);
-        } 
-        catch (NumberFormatException e) {
-            System.out.println("Illegal Input");
+            System.out.print("Enter rollno: ");
+            int rollno = Integer.parseInt(scan.next());
+            System.out.print("Enter marks: ");
+            int[] marks = new int[3];
+            for (int i = 0; i < 3; i++)
+                marks[i] = Integer.parseInt(scan.next());
+            Student s = new Student(name, rollno, marks);
+            System.out.println("Percentage is: "+s.percentage());
+            System.out.println("Grade is: "+s.grade());
+        }
+        catch (NumberFormatException N) {
+            System.out.print("Not a number");
         }
     }
 }
