@@ -9,10 +9,10 @@ public class Q4ThreadPriority {
             }
         });
 
-        t1.setPriority(Thread.MAX_PRIORITY); // Setting highest priority
+        t1.setPriority(Thread.MAX_PRIORITY); 
         t1.start();
 
-        // Interrupting the thread to demonstrate InterruptedException
+        
         t1.interrupt();
     }
 }
